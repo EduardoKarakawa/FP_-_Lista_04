@@ -1,36 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
-int main() {
-	int a, b, c, x, ehtri=0;
-	printf("Digite as medidas dos lados do triangulo:");
-	scanf_s("%d %d %d", &a, &b, &c);
-	if ((a < (b+c)) && a>abs(b - c)) {
-		ehtri++;
+int main()
+{
+	float a, b, c, x1, x2, delta;
+	printf(" Digite os valores de a, b e c:");
+	scanf_s("%f %f %f", &a, &b, &c);
+	delta = b * b - 4.0f * a * c;
+	if (delta < 0)
+	{
+		printf("Nao possui raizes.\n");
+		return 0;
 	}
-	if ((b < a + c) && b>abs(a-c)) {
-		ehtri++;
-	}
-	if ((c < b + a) && c>abs(b-a)) {
-		ehtri++;
-	}
-	if (ehtri < 3) {
-		printf("Os valores digitados nao pertencem a um triangulo.\n");
-	}
-	else {
-		if ((a + b) - (b + c) == 0) {
-			printf("Os valores sao de um triangulo equilatero.\n");
-		}
-		else {
-			if (((a == b) && (a != c)) || ((c == b) && (b != a))) {
-				printf("Os valores sao de um triangulo isoscele.\n");
-			}
-			else {
-				if ((a != b) && (c != b) && (c != a)) {
-					printf("Os valores sao de um triangulo escaleno.\n");
-				}
-			}
-		}
+	else
+	{
+		x1 = (-b + sqrt(delta)) / (2.0f * a);
+		x2 = (-b - sqrt(delta)) / (2.0f * a);
+		printf("X1 = %.2f\nX2 = %.2f\n", x1, x2);
 	}
 	system("pause");
 	return 0;
